@@ -1,0 +1,26 @@
+h2 To Do Item:
+
+table.table
+  thead.thead-dark
+    tr
+      td Category
+      td Title
+      td Completed?
+      td Created at
+      td Last Update at
+  tbody
+    tr
+      td = @item.category.title
+      td = @item.title
+      td
+        - if @item.completed == 1
+            | Yes
+        - else
+            | No
+      td = @item.created_at.strftime("%F")
+      td = @item.updated_at.strftime("%F")
+
+p.text-center
+  = link_to items_path do
+      button.btn.btn-secondary
+        | Back

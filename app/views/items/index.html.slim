@@ -1,0 +1,30 @@
+h1 To Do List
+
+p.text-center
+  = link_to new_item_path do
+    button.btn.btn-secondary
+      | New Item
+  | &nbsp;
+  = link_to categories_path
+    button.btn.btn-secondary
+      | Categories
+
+table.table
+  thead.thead-dark
+    tr
+      th Category
+      th Title
+      th
+
+    - @items.each do |item|
+      tr
+        td= item.category.title
+        td= item.title
+
+        td
+          = link_to item_path(item)
+            i class="fa fa-search" &nbsp;&nbsp;
+          = link_to edit_item_path(item)
+            i class="fa fa-edit" &nbsp;&nbsp;
+          = link_to item_path(item), method: :delete, data: { confirm: 'Are you sure?' }
+            i class="fa fa-trash" &nbsp;&nbsp;

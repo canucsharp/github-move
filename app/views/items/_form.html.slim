@@ -1,0 +1,20 @@
+= form_with model: @item, local: true do |form|
+  - if @item.errors.any?
+      div id="error_explanation"
+        h2
+          ' #{pluralize(@item.errors.count, 'error')}
+          | prohibited this item from being saved:
+        ul
+          - @item.errors.full_messages.each do |msg|
+            li
+              = msg
+      div
+  p
+    = form.select :category_id, options_from_collection_for_select(Category.all,:id,:title)
+    br
+    = label_tag(:title, "Items Name:")
+    br
+    = form.text_field :title
+    br
+    br
+    = form.submit("Save")
